@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ShyMirror is an interactive cartoon mirror that has absolutely no interest in copying you."
+    />
+    <meta name="application-name" content="ShyMirror" />
+    <meta name="theme-color" content="#20253f" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sudarshanchaudhari.github.io/ShyMirror/" />
+    <meta property="og:title" content="ShyMirror — a reflection with its own ideas" />
+    <meta
+      property="og:description"
+      content="Guide the character, then watch its mischievous reflection refuse to cooperate."
+    />
+    <meta property="og:image" content="https://sudarshanchaudhari.github.io/ShyMirror/favicon.svg" />
+    <meta property="og:image:alt" content="ShyMirror's mischievous mirror icon" />
+    <meta name="twitter:card" content="summary" />
+    <title>ShyMirror — a reflection with its own ideas</title>
+    <link rel="canonical" href="https://sudarshanchaudhari.github.io/ShyMirror/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#scene-title">Skip to the mirror</a>
+
+    <main class="app-shell">
+      <header class="masthead">
+        <div class="brand-lockup">
+          <p class="eyebrow">A tiny act of disobedience</p>
+          <h1>Shy<span>Mirror</span></h1>
+        </div>
+
+        <div class="status-cluster" aria-label="Current mirror status">
+          <span class="status-light" aria-hidden="true"></span>
+          <p id="behavior-status" aria-live="polite">The reflection is pretending to behave.</p>
+        </div>
+      </header>
+
+      <section class="experience" aria-labelledby="scene-title">
+        <div class="stage-card">
+          <h2 id="scene-title" class="sr-only">Interactive ShyMirror cartoon scene</h2>
+
+          <svg
+            id="mirror-scene"
+            viewBox="0 0 1200 720"
+            role="img"
+            tabindex="0"
+            aria-labelledby="svg-title svg-description"
+            aria-describedby="play-instructions"
+          >
+            <title id="svg-title">A cartoon character standing beside a mischievous mirror</title>
+            <desc id="svg-description">
+              Move the pointer or use the arrow keys to guide the real character. The reflection
+              sometimes looks away, hides, waves, changes expression, or leaves the mirror.
+            </desc>
+
+            <defs>
+              <linearGradient id="wall-gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#716a99" />
+                <stop offset="1" stop-color="#4d527b" />
+              </linearGradient>
+              <linearGradient id="floor-gradient" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#302f51" />
+                <stop offset="0.5" stop-color="#3f3d64" />
+                <stop offset="1" stop-color="#292b4a" />
+              </linearGradient>
+              <linearGradient id="glass-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#d9fff7" stop-opacity="0.9" />
+                <stop offset="0.48" stop-color="#86d8d1" stop-opacity="0.72" />
+                <stop offset="1" stop-color="#518f9f" stop-opacity="0.9" />
+              </linearGradient>
+              <linearGradient id="frame-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffd77a" />
+                <stop offset="0.45" stop-color="#d28c45" />
+                <stop offset="1" stop-color="#8c5337" />
+              </linearGradient>
+              <radialGradient id="lamp-glow">
+                <stop offset="0" stop-color="#ffdf80" stop-opacity="0.42" />
+                <stop offset="1" stop-color="#ffdf80" stop-opacity="0" />
+              </radialGradient>
+              <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
+                <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#17192f" flood-opacity="0.35" />
+              </filter>
+              <filter id="glass-glow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#9cf4e7" flood-opacity="0.35" />
+              </filter>
+              <clipPath id="mirror-clip">
+                <path d="M681 614V262C681 138 758 65 886 65s205 73 205 197v352Z" />
+              </clipPath>
+            </defs>
+
+            <!-- Quiet room background -->
+            <rect width="1200" height="720" fill="url(#wall-gradient)" />
+            <path d="M0 522H1200V720H0Z" fill="url(#floor-gradient)" />
+            <path d="M0 522H1200" stroke="#9e8daf" stroke-width="8" opacity="0.35" />
+            <ellipse cx="290" cy="285" rx="280" ry="270" fill="url(#lamp-glow)" />
+
+            <g class="room-picture" aria-hidden="true">
+              <rect x="82" y="84" width="210" height="132" rx="10" fill="#343652" stroke="#d9aa61" stroke-width="8" />
+              <circle cx="148" cy="145" r="28" fill="#ffca69" />
+              <path d="M110 190c25-54 58-44 77-17 26-39 50-29 72 17Z" fill="#728bb0" />
+              <path d="M111 110h151" stroke="#fff0c4" stroke-width="5" stroke-linecap="round" opacity="0.35" />
+            </g>
+
+            <g class="room-plant" aria-hidden="true">
+              <path d="M1137 466c-7-80-30-116-47-151M1135 466c8-79 31-119 50-143M1136 466c-3-55-8-101 4-150" fill="none" stroke="#243e45" stroke-width="9" stroke-linecap="round" />
+              <path d="M1090 325c-52 3-56-41-55-56 42-1 58 22 55 56ZM1140 326c-34-26-12-65 0-76 28 25 28 50 0 76ZM1183 332c5-42 43-46 55-43-5 36-25 49-55 43ZM1105 374c-48 11-60-28-59-44 39-8 58 9 59 44ZM1165 376c7-42 44-45 57-41-7 35-28 47-57 41Z" fill="#438376" />
+              <path d="M1085 453h103l-13 85h-77Z" fill="#d1745c" />
+              <path d="M1085 453h103" stroke="#ffc16e" stroke-width="8" />
+            </g>
+
+            <ellipse cx="336" cy="640" rx="180" ry="34" fill="#17192f" opacity="0.3" />
+            <ellipse cx="886" cy="650" rx="244" ry="35" fill="#17192f" opacity="0.3" />
+
+            <!-- Real character -->
+            <g id="real-character" class="character real-character" filter="url(#soft-shadow)">
+              <g class="legs">
+                <path d="M-54 25c-3 45-3 78-2 111" fill="none" stroke="#30385e" stroke-width="38" stroke-linecap="round" />
+                <path d="M52 25c4 45 5 78 4 111" fill="none" stroke="#30385e" stroke-width="38" stroke-linecap="round" />
+                <path d="M-72 143h46" fill="none" stroke="#ffcc72" stroke-width="27" stroke-linecap="round" />
+                <path d="M37 143h48" fill="none" stroke="#ffcc72" stroke-width="27" stroke-linecap="round" />
+              </g>
+              <g class="body">
+                <path d="M-92-119Q0-158 92-119L78 39Q0 68-78 39Z" fill="#ef6d67" />
+                <path d="M-80-76H80" stroke="#ff9b7e" stroke-width="9" opacity="0.7" />
+                <path d="M0-131V49" stroke="#c84e59" stroke-width="6" opacity="0.6" />
+                <circle cx="0" cy="-72" r="7" fill="#ffe08f" />
+                <circle cx="0" cy="-35" r="7" fill="#ffe08f" />
+              </g>
+              <g id="real-left-arm" class="arm left-arm">
+                <path d="M-82-105c-38 23-44 67-39 112" fill="none" stroke="#ef6d67" stroke-width="35" stroke-linecap="round" />
+                <circle cx="-117" cy="17" r="19" fill="#eab08a" />
+              </g>
+              <g id="real-right-arm" class="arm right-arm">
+                <path d="M82-105c38 23 44 67 39 112" fill="none" stroke="#ef6d67" stroke-width="35" stroke-linecap="round" />
+                <circle cx="117" cy="17" r="19" fill="#eab08a" />
+              </g>
+              <g id="real-head" class="head">
+                <path d="M-14-129h28l10 28h-48Z" fill="#d39170" />
+                <ellipse class="face" cx="0" cy="-194" rx="82" ry="88" fill="#eab08a" />
+                <path d="M-81-217c5-67 49-91 92-86 42 4 73 40 72 88-29-5-46-21-55-40-27 28-65 39-109 38Z" fill="#273151" />
+                <path d="M-71-225c-14-1-20 11-17 27 3 13 10 22 22 21M71-225c14-1 20 11 17 27-3 13-10 22-22 21" fill="none" stroke="#d39170" stroke-width="9" stroke-linecap="round" />
+                <g class="face-features">
+                  <g class="brows" fill="none" stroke="#5f3940" stroke-width="7" stroke-linecap="round">
+                    <path class="brow-left" d="M-53-220q21-10 38 0" />
+                    <path class="brow-right" d="M15-220q21-10 38 0" />
+                  </g>
+                  <g class="eyes">
+                    <ellipse cx="-34" cy="-198" rx="22" ry="25" fill="#fff8e8" />
+                    <ellipse cx="34" cy="-198" rx="22" ry="25" fill="#fff8e8" />
+                    <g id="real-pupils" fill="#26304d">
+                      <circle cx="-34" cy="-198" r="10" />
+                      <circle cx="34" cy="-198" r="10" />
+                    </g>
+                    <g fill="#fff">
+                      <circle cx="-38" cy="-202" r="3.5" />
+                      <circle cx="30" cy="-202" r="3.5" />
+                    </g>
+                  </g>
+                  <path class="nose" d="M0-192l-7 22 13 1" fill="none" stroke="#c37d67" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path id="real-mouth" class="mouth" d="M-25-151q25 22 50 0" fill="none" stroke="#743c4b" stroke-width="7" stroke-linecap="round" />
+                  <circle class="cheek cheek-left" cx="-54" cy="-165" r="10" fill="#ed817d" opacity="0.46" />
+                  <circle class="cheek cheek-right" cx="54" cy="-165" r="10" fill="#ed817d" opacity="0.46" />
+                </g>
+              </g>
+            </g>
+
+            <!-- Mirror glass and everything that can rebel inside it -->
+            <path d="M681 614V262C681 138 758 65 886 65s205 73 205 197v352Z" fill="url(#glass-gradient)" filter="url(#glass-glow)" />
+            <g clip-path="url(#mirror-clip)">
+              <path d="M697 182 889 65h151L697 300ZM706 388l371-228v71L706 459Z" fill="#fff" opacity="0.17" />
+              <g id="reflection-character" class="character reflection-character">
+                <g class="legs">
+                  <path d="M-54 25c-3 45-3 78-2 111" fill="none" stroke="#30385e" stroke-width="38" stroke-linecap="round" />
+                  <path d="M52 25c4 45 5 78 4 111" fill="none" stroke="#30385e" stroke-width="38" stroke-linecap="round" />
+                  <path d="M-72 143h46" fill="none" stroke="#ffcc72" stroke-width="27" stroke-linecap="round" />
+                  <path d="M37 143h48" fill="none" stroke="#ffcc72" stroke-width="27" stroke-linecap="round" />
+                </g>
+                <g class="body">
+                  <path d="M-92-119Q0-158 92-119L78 39Q0 68-78 39Z" fill="#ef6d67" />
+                  <path d="M-80-76H80" stroke="#ff9b7e" stroke-width="9" opacity="0.7" />
+                  <path d="M0-131V49" stroke="#c84e59" stroke-width="6" opacity="0.6" />
+                  <circle cx="0" cy="-72" r="7" fill="#ffe08f" />
+                  <circle cx="0" cy="-35" r="7" fill="#ffe08f" />
+                </g>
+                <g class="arm left-arm">
+                  <path d="M-82-105c-38 23-44 67-39 112" fill="none" stroke="#ef6d67" stroke-width="35" stroke-linecap="round" />
+                  <circle cx="-117" cy="17" r="19" fill="#eab08a" />
+                </g>
+                <g id="reflection-wave-arm" class="arm right-arm">
+                  <path d="M82-105c38 23 44 67 39 112" fill="none" stroke="#ef6d67" stroke-width="35" stroke-linecap="round" />
+                  <circle cx="117" cy="17" r="19" fill="#eab08a" />
+                </g>
+                <g id="reflection-head" class="head">
+                  <path d="M-14-129h28l10 28h-48Z" fill="#d39170" />
+                  <ellipse class="face" cx="0" cy="-194" rx="82" ry="88" fill="#eab08a" />
+                  <path d="M-81-217c5-67 49-91 92-86 42 4 73 40 72 88-29-5-46-21-55-40-27 28-65 39-109 38Z" fill="#273151" />
+                  <path d="M-71-225c-14-1-20 11-17 27 3 13 10 22 22 21M71-225c14-1 20 11 17 27-3 13-10 22-22 21" fill="none" stroke="#d39170" stroke-width="9" stroke-linecap="round" />
+                  <g class="face-features">
+                    <g class="brows" fill="none" stroke="#5f3940" stroke-width="7" stroke-linecap="round">
+                      <path id="reflection-brow-left" d="M-53-220q21-10 38 0" />
+                      <path id="reflection-brow-right" d="M15-220q21-10 38 0" />
+                    </g>
+                    <g class="eyes">
+                      <ellipse cx="-34" cy="-198" rx="22" ry="25" fill="#fff8e8" />
+                      <ellipse cx="34" cy="-198" rx="22" ry="25" fill="#fff8e8" />
+                      <g id="reflection-pupils" fill="#26304d">
+                        <circle cx="-34" cy="-198" r="10" />
+                        <circle cx="34" cy="-198" r="10" />
+                      </g>
+                      <g fill="#fff">
+                        <circle cx="-38" cy="-202" r="3.5" />
+                        <circle cx="30" cy="-202" r="3.5" />
+                      </g>
+                    </g>
+                    <path d="M0-192l-7 22 13 1" fill="none" stroke="#c37d67" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path id="reflection-mouth" class="mouth" d="M-25-151q25 22 50 0" fill="none" stroke="#743c4b" stroke-width="7" stroke-linecap="round" />
+                    <circle class="cheek cheek-left" cx="-54" cy="-165" r="10" fill="#ed817d" opacity="0.46" />
+                    <circle class="cheek cheek-right" cx="54" cy="-165" r="10" fill="#ed817d" opacity="0.46" />
+                  </g>
+                  <g class="head-back" aria-hidden="true">
+                    <ellipse cx="0" cy="-194" rx="82" ry="88" fill="#273151" />
+                    <path d="M-63-151q63 28 126 0" fill="none" stroke="#354163" stroke-width="14" stroke-linecap="round" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Replacement character: a theatrically unimpressed cat -->
+              <g id="replacement-character" class="replacement-character" aria-hidden="true">
+                <path d="M-86-139Q0-174 86-139L70 48Q0 70-70 48Z" fill="#7d72bd" />
+                <path d="M-48 35v105M48 35v105" fill="none" stroke="#3c4168" stroke-width="35" stroke-linecap="round" />
+                <path d="M-74 143h48M27 143h48" fill="none" stroke="#ffcc72" stroke-width="25" stroke-linecap="round" />
+                <path d="M-75-118c-43 34-46 85-29 124M75-118c43 34 46 85 29 124" fill="none" stroke="#7d72bd" stroke-width="33" stroke-linecap="round" />
+                <path d="m-77-272 14-65 48 44M77-272 63-337 15-293" fill="#bb8a70" stroke="#273151" stroke-width="9" stroke-linejoin="round" />
+                <ellipse cx="0" cy="-228" rx="82" ry="78" fill="#bb8a70" />
+                <path d="M-72-270q72-57 144 0" fill="none" stroke="#273151" stroke-width="22" stroke-linecap="round" />
+                <path d="M-55-229h34M21-229h34" stroke="#26304d" stroke-width="9" stroke-linecap="round" />
+                <path d="m0-209-8 9 8 7 8-7Z" fill="#ef6d67" />
+                <path d="M-9-187q9-8 18 0" fill="none" stroke="#5f3940" stroke-width="6" stroke-linecap="round" />
+                <path d="M-85-202h57M28-202h57" stroke="#fff8e8" stroke-width="3" opacity="0.8" />
+              </g>
+
+              <g id="glass-doodles" class="glass-doodles" aria-hidden="true">
+                <path d="M744 193q35-28 67 0-28 5-41 34-8-27-26-34ZM1001 353c-47-30-70 34-27 54 45 20 73-19 54-51-13-22-42-12-40 9 2 18 29 16 31-2" />
+                <path d="m755 449 18-22 17 23 23-13 6 28 28 5-18 22 17 24-29 3-8 27-22-17-24 17-4-29-27-8 19-21-18-24Z" />
+                <path d="M938 153q22-25 45 0M935 175q28 19 54 0" />
+                <text x="946" y="518">NOPE!</text>
+              </g>
+            </g>
+
+            <!-- Frame is deliberately on top so the reflection can hide behind it -->
+            <path d="M681 614V262C681 138 758 65 886 65s205 73 205 197v352" fill="none" stroke="#6e3f35" stroke-width="39" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M681 614V262C681 138 758 65 886 65s205 73 205 197v352" fill="none" stroke="url(#frame-gradient)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M648 614h476" stroke="#6e3f35" stroke-width="45" stroke-linecap="round" />
+            <path d="M648 604h476" stroke="url(#frame-gradient)" stroke-width="29" stroke-linecap="round" />
+            <path d="M705 644h362" stroke="#20233f" stroke-width="18" stroke-linecap="round" opacity="0.5" />
+
+            <g class="mirror-plaque" aria-hidden="true">
+              <path d="M803 624h166l-11 38H814Z" fill="#f6c969" stroke="#6e3f35" stroke-width="7" />
+              <text x="886" y="650" text-anchor="middle">PLEASE REFLECT</text>
+            </g>
+
+            <g id="sparkles" class="sparkles" aria-hidden="true">
+              <path d="m634 213 8 21 21 8-21 8-8 21-8-21-21-8 21-8ZM1118 299l6 15 15 6-15 6-6 15-6-15-15-6 15-6Z" />
+            </g>
+          </svg>
+
+          <p class="stage-hint">
+            <span aria-hidden="true">↖</span>
+            Move here. Watch there.
+          </p>
+        </div>
+
+        <aside class="control-deck" aria-label="Mirror controls and interaction status">
+          <div id="play-instructions" class="instructions">
+            <p class="panel-label">How to play</p>
+            <p>Move your pointer, tap the room, or focus the scene and use the arrow keys.</p>
+          </div>
+
+          <div class="button-row">
+            <button id="surprise-button" class="primary-button" type="button">
+              <span aria-hidden="true">✦</span>
+              Surprise me
+              <kbd>Space</kbd>
+            </button>
+            <button id="sound-button" class="icon-button" type="button" aria-pressed="true">
+              <span class="sound-icon" aria-hidden="true">♪</span>
+              <span class="sound-label">Sound on</span>
+              <kbd>S</kbd>
+            </button>
+            <button id="reset-button" class="icon-button" type="button">
+              <span aria-hidden="true">↺</span>
+              Reset
+              <kbd>R</kbd>
+            </button>
+          </div>
+
+          <div class="interaction-panel">
+            <div class="interaction-copy">
+              <div>
+                <p class="panel-label">Meaningful interactions</p>
+                <p><strong id="interaction-count">0</strong> curious moves</p>
+              </div>
+              <p id="sync-copy">5 until it behaves</p>
+            </div>
+            <progress id="sync-progress" max="5" value="0" aria-label="Progress until the reflection synchronizes">0 of 5 interactions</progress>
+            <ol id="activity-log" class="activity-log" aria-label="Recent mirror activity">
+              <li><time>Now</time><span>The mirror is watching you back.</span></li>
+            </ol>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <noscript>
+      <p class="noscript-message">ShyMirror needs JavaScript to decide how uncooperative it feels today.</p>
+    </noscript>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

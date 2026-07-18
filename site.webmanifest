@@ -1,0 +1,18 @@
+{
+  "name": "ShyMirror",
+  "short_name": "ShyMirror",
+  "description": "An interactive cartoon mirror with a reflection that refuses to cooperate.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#16182d",
+  "theme_color": "#20253f",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

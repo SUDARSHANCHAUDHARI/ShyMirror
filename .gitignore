@@ -1,0 +1,39 @@
+# Operating system and editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies, caches, and generated output
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+local.properties
+secure.properties
+keystore.properties
+
+# Keys, certificates, and signing material
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
