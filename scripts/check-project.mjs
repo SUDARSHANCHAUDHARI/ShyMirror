@@ -41,6 +41,16 @@ const assert = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
+const effectiveRootTokens = (source) => {
+  const tokens = {};
+  for (const match of source.matchAll(/:root\s*\{([\s\S]*?)\}/g)) {
+    for (const declaration of match[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+      tokens[declaration[1]] = declaration[2].trim();
+    }
+  }
+  return tokens;
+};
+
 const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
 const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
 assert(duplicateIds.length === 0, `Duplicate IDs: ${duplicateIds.join(", ")}`);
@@ -83,8 +93,17 @@ assert(script.includes("state.real") && script.includes("state.reflection"), "Mi
 assert(manifest.start_url === "./" && manifest.scope === "./", "Manifest must remain project-path safe");
 assert(packageData.private === true, "Package must remain private to prevent accidental publication");
 
-for (const color of ["#15152a", "#fff5df", "#ff5d5d", "#4f7cff", "#ffd166", "#58d6a9", "#b695ff"]) {
-  assert(css.toLowerCase().includes(color), `Missing shared TinyChaos color ${color}`);
+const tokens = effectiveRootTokens(css);
+for (const [name, expected] of Object.entries({
+  "--ink": "#15152a",
+  "--paper": "#fff5df",
+  "--coral": "#ff5d5d",
+  "--blue": "#4f7cff",
+  "--sun": "#ffd166",
+  "--glass": "#58d6a9",
+  "--lilac": "#b695ff",
+})) {
+  assert(tokens[name]?.toLowerCase() === expected, `${name} must resolve to ${expected}`);
 }
 assert(/--display-font:\s*Impact/.test(css), "Display typography must use the condensed family stack");
 assert(/--body-font:\s*"Arial Rounded MT Bold"/.test(css), "Body typography must use the rounded family stack");
@@ -92,6 +111,9 @@ assert(/body\s*\{[\s\S]*min-width:\s*0;[\s\S]*overflow-x:\s*clip;[\s\S]*overflow
 assert(/html\s*\{[\s\S]*min-width:\s*0;/.test(css), "HTML must not impose a positive minimum width");
 assert(/#mirror-scene:focus-visible\s*\{[\s\S]*outline:\s*4px solid var\(--blue\)/.test(css), "Scene focus must use TinyChaos blue");
 assert(/\.primary-button:focus-visible,[\s\S]*outline:\s*4px solid var\(--blue\)/.test(css), "Control focus must use TinyChaos blue");
+assert(/\.tinychaos-credit a:focus-visible\s*\{[\s\S]*outline:\s*4px solid var\(--blue\)/.test(css), "Footer gallery link needs the shared visible focus ring");
+assert(/\.primary-button,[\s\S]*\.icon-button\s*\{[\s\S]*border:\s*3px solid var\(--ink\)/.test(css), "Primary controls need heavy ink outlines");
+assert(/\.primary-button\s*\{[\s\S]*box-shadow:\s*4px 4px 0 var\(--ink\)/.test(css), "Primary controls need solid ink offset shadows");
 assert(html.includes('href="https://sudarshanchaudhari.github.io/TinyChaos/"'), "TinyChaos gallery link is required");
 assert(html.includes("ShyMirror · by Sudarshan Chaudhari"), "Author attribution is required");
 
