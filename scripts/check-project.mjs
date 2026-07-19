@@ -83,6 +83,18 @@ assert(script.includes("state.real") && script.includes("state.reflection"), "Mi
 assert(manifest.start_url === "./" && manifest.scope === "./", "Manifest must remain project-path safe");
 assert(packageData.private === true, "Package must remain private to prevent accidental publication");
 
+for (const color of ["#15152a", "#fff5df", "#ff5d5d", "#4f7cff", "#ffd166", "#58d6a9", "#b695ff"]) {
+  assert(css.toLowerCase().includes(color), `Missing shared TinyChaos color ${color}`);
+}
+assert(/--display-font:\s*Impact/.test(css), "Display typography must use the condensed family stack");
+assert(/--body-font:\s*"Arial Rounded MT Bold"/.test(css), "Body typography must use the rounded family stack");
+assert(/body\s*\{[\s\S]*min-width:\s*0;[\s\S]*overflow-x:\s*clip;[\s\S]*overflow-y:\s*auto;/.test(css), "Body must allow vertical scrolling without a positive minimum width");
+assert(/html\s*\{[\s\S]*min-width:\s*0;/.test(css), "HTML must not impose a positive minimum width");
+assert(/#mirror-scene:focus-visible\s*\{[\s\S]*outline:\s*4px solid var\(--blue\)/.test(css), "Scene focus must use TinyChaos blue");
+assert(/\.primary-button:focus-visible,[\s\S]*outline:\s*4px solid var\(--blue\)/.test(css), "Control focus must use TinyChaos blue");
+assert(html.includes('href="https://sudarshanchaudhari.github.io/TinyChaos/"'), "TinyChaos gallery link is required");
+assert(html.includes("ShyMirror · by Sudarshan Chaudhari"), "Author attribution is required");
+
 if (failures.length > 0) {
   console.error("ShyMirror checks failed:");
   failures.forEach((failure) => console.error(`- ${failure}`));

@@ -1,16 +1,18 @@
 :root {
   color-scheme: dark;
-  --ink: #20233f;
+  --ink: #15152a;
   --ink-deep: #16182d;
   --violet: #716a99;
-  --glass: #9cebdd;
-  --coral: #ef6d67;
-  --sun: #ffd06f;
-  --cream: #fff4d8;
-  --paper: #f8e9c5;
+  --glass: #58d6a9;
+  --coral: #ff5d5d;
+  --sun: #ffd166;
+  --blue: #4f7cff;
+  --lilac: #b695ff;
+  --cream: #fff5df;
+  --paper: #fff5df;
   --muted: #b9b6d2;
-  --display-font: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
-  --body-font: "Trebuchet MS", "Avenir Next", sans-serif;
+  --display-font: Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Condensed", sans-serif;
+  --body-font: "Arial Rounded MT Bold", "Avenir Next Rounded", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
   --utility-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-synthesis: none;
 }
@@ -20,13 +22,16 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 0;
   background: var(--ink-deep);
 }
 
 body {
+  min-width: 0;
   min-height: 100vh;
   margin: 0;
+  overflow-x: clip;
+  overflow-y: auto;
   color: var(--cream);
   background:
     radial-gradient(circle at 15% 8%, rgba(113, 106, 153, 0.34), transparent 27rem),
@@ -65,6 +70,33 @@ button {
   width: min(100% - 2rem, 92rem);
   margin-inline: auto;
   padding: clamp(1.25rem, 3vw, 3rem) 0 2rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100% - 2rem, 92rem);
+  margin: 0 auto;
+  padding: 0 0 2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.tinychaos-credit {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tinychaos-credit a {
+  color: var(--cream);
+  font-weight: 900;
 }
 
 .masthead {
@@ -177,7 +209,9 @@ h1 span::after {
 }
 
 #mirror-scene:focus-visible {
-  box-shadow: inset 0 0 0 5px var(--sun);
+  outline: 4px solid var(--blue);
+  outline-offset: 4px;
+  box-shadow: inset 0 0 0 5px var(--blue), 0 0 0 4px var(--paper), 0 0 0 8px var(--ink);
 }
 
 .stage-hint {
@@ -278,8 +312,9 @@ h1 span::after {
 
 .primary-button:focus-visible,
 .icon-button:focus-visible {
-  outline: 3px solid var(--glass);
+  outline: 4px solid var(--blue);
   outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 8px var(--ink);
 }
 
 .primary-button > span:first-child,
